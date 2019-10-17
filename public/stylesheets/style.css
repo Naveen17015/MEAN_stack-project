@@ -1,0 +1,124 @@
+*,html,body
+{
+  margin: 0;
+  padding: 0;
+}
+body
+{
+  height: 1000px;
+}
+
+header
+{
+  height: 112px;
+  line-height: 112px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+ul
+{
+  list-style: none;
+
+}
+
+ul li
+{
+  display: inline-block;
+}
+
+header nav
+{
+  float: right;
+}
+
+header a{
+  color: white;
+  padding-right: 30px;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.3s ease-in;
+}
+
+header a:hover
+{
+  text-decoration: none;
+  color: deepskyblue;
+}
+
+header nav ul li a
+{
+  padding-right: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  transition: all 0.3s ease-in;
+
+}
+
+header nav ul li a:hover
+{
+  text-decoration: none;
+  color: orange;
+}
+
+
+.image1
+{
+  background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(..//images/methode_times_prod_web_bin_88a26b2e-95d9-11e8-85e3-d844d3177259.jpg);
+  background-size: 100% 100%;
+}
+
+.slider,.slider ul,.slider ul li
+{
+  height: 700px;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.slider h2
+{
+  margin-top: 250px;
+  font-weight: bold;
+}
+
+.image2
+{
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(..//images/room-TF15lhUp5pk-unsplash.jpg);
+  background-size: 100% 100%;
+}
+
+.slider span
+{
+  color: orange;
+}
+
+.slider a
+{
+  margin-right: 10px 50px;
+  padding: 10px 40px;
+}
+.slider a.btn-half
+{
+  background-color: deepskyblue;
+  color: white;
+}
+.slider a.btn-half:hover
+{
+  background-color: dodgerblue;
+}
+.slider a.btn-full
+{
+  background-color: orange;
+  color: white;
+}
+.slider a.btn-full:hover
+{
+  background-color: #e67e22;
+}
+.slider i
+{
+  font-size: 30px;
+  margin-right: 10px;
+}

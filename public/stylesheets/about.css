@@ -1,0 +1,33 @@
+body{
+  font-family: verdana,sans-serif;
+  background: url(/images/undraw_newspaper_k72w.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+
+}
+
+.container{
+  background: rgba(90,90,90,0.5);
+  padding: 46px;
+  width: 50%;
+  margin: auto;
+  margin-top: 80px;
+  height: 50%;
+  margin-left: 320px;
+}
+
+.container h1{
+  color: orange;
+  text-align: center;
+}
+
+.container h3{
+  color: white;
+  text-align: left;
+}
+.container p{
+  
+  text-align: center;
+
+}
