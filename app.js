@@ -1,5 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost/EmployeeDB';
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -12,6 +14,15 @@ const service = require("./routes/service");
 const home = require("./routes/index");
 const reset = require("./routes/reset");
 var app = express();
+
+MongoClient.connect(url, function(err, db) {
+console.log("Database is Connected");
+db.collection('Employee').inserOne({
+  Employeeid :4,
+  EmployeeName :"NewEmployee"
+}
+);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
