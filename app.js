@@ -15,13 +15,15 @@ const home = require("./routes/index");
 const reset = require("./routes/reset");
 var app = express();
 
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect(url, function(err, db){
+  if (err) throw err;
 console.log("Database is Connected");
-db.collection('Employee').inserOne({
-  Employeeid :4,
-  EmployeeName :"NewEmployee"
-}
-);
+  var dbo = db.db("mydb");
+dbo.createCollection('Employee', function(err, res){
+  if (err) throw err;
+  console.log("Collection is Created.");
+  db.close();
+});
 });
 
 // view engine setup
