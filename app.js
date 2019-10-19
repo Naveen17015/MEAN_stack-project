@@ -43,6 +43,17 @@ app.use('/home', home);
 app.use('/reset', reset);
 app.use('/register', register);
 
+app.post('/next', function(req, res, db){
+  var name = req.body.uname;
+  var password = req.body.password;
+  var data = {"Name" : name,"password" : password}
+console.log(data);
+db.collection('Employee').insertOne(data, function(err, collection){
+if (err) throw err;
+console.log("Record is Inserted Successfully");
+db.close();
+});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
