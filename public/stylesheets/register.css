@@ -1,12 +1,9 @@
 body{
-
     font-family: tahoma,sans-serif;
-
     background: url(/images//undraw_social_expert_07r8.svg);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-
 }
 .sigin{
   background: rgba(90,90,90,1);
