@@ -1,8 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://localhost/EmployeeDB';
-var path = require('path');
+var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
@@ -13,18 +12,11 @@ const about = require("./routes/about");
 const service = require("./routes/service");
 const home = require("./routes/index");
 const reset = require("./routes/reset");
+
+var dbCon = mongodb.MongoClient.connect('mongodb://localhost:27017');
+console.log('Database is Connected');
 var app = express();
 
-MongoClient.connect(url, function(err, db){
-  if (err) throw err;
-console.log("Database is Connected");
-  var dbo = db.db("mydb");
-dbo.createCollection('Employee', function(err, res){
-  if (err) throw err;
-  console.log("Collection is Created.");
-  db.close();
-});
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,9 +26,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/views')));
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', about);
@@ -44,17 +37,23 @@ app.use('/service', service);
 app.use('/home', home);
 app.use('/reset', reset);
 app.use('/register', register);
+app.use('/signup', signup);
 
-app.post('/next', function(req, res, db){
-  var name = req.body.uname;
-  var password = req.body.password;
-  var data = {"Name" : name,"password" : password}
-console.log(data);
-db.collection('Employee').insertOne(data, function(err, collection){
-if (err) throw err;
-console.log("Record is Inserted Successfully");
-db.close();
+app.post('/next', function(req, res){
+  dbCon.then(function(db){
+    delete req.body.uname;
+    db.collection('Employee').insertOne(req.body)
+  });
+  res.send('Data received:\n' + JSON.stringify(req.body));
 });
+
+app.post('/success',function(req, res){
+  dbCon.then(function(db){
+    delete req.body.uname;
+    db.collection('Employee').insertOne(req.body)
+  });
+  res.send('Data received:\n' + JSON.stringify(req.body));
+  console.log(req.body);
 });
 
 // catch 404 and forward to error handler
